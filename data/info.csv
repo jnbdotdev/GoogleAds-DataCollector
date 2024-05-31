@@ -1,6 +1,101 @@
-Category;Value;Location
-Artes e entretenimento;1362;South America
-Automóveis e veículos;2442;South America
-Casa e jardim;3546;South America
-Ciência;1590;South America
-Comidas e bebidas;1920;South America
+Category;Value;Region;Status
+Arts and entertainment;3372;North America;Success
+Automobiles and vehicles;5520;North America;Reviewed
+House and garden;14010;North America;Success
+Science;4428;North America;Success
+Food and drinks;8598;North America;Success
+Shopping;8400;North America;Success
+Computers and electronic devices;5508;North America;Success
+Online communities;6528;North America;Success
+Commerce and industries;10998;North America;Success
+Fitness and beauty;7806;North America;Success
+Jobs and education;7422;North America;Success
+Sports;2538;North America;Success
+Finance;19278;North America;Success
+Hobbies and leisure;6618;North America;Success
+Properties;8700;North America;Success
+Internet and telecommunications;8730;North America;Success
+Games;2622;North America;Success
+Law and government;7698;North America;Success
+Books and literature;3246;North America;Success
+News;2022;North America;Success
+People and society;5202;North America;Success
+Pets and animals;5046;North America;Success
+Reference;6714;North America;Success
+Health;10440;North America;Success
+Trip;8460;North America;Success
+Arts and entertainment;1362;South America;Success
+Automobiles and vehicles;2442;South America;Success
+House and garden;3546;South America;Success
+Science;1590;South America;Success
+Food and drinks;1920;South America;Success
+Shopping;2916;South America;Success
+Computers and electronic devices;3402;South America;Success
+Online communities;3606;South America;Success
+Commerce and industries;4554;South America;Reviewed
+Fitness and beauty;2340;South America;Success
+Jobs and education;5466;South America;Success
+Sports;1044;South America;Success
+Finance;12096;South America;Success
+Hobbies and leisure;2244;South America;Success
+Properties;2118;South America;Success
+Internet and telecommunications;5250;South America;Success
+Games;1920;South America;Success
+Law and government;4788;South America;Success
+Books and literature;1734;South America;Success
+News;582;South America;Reviewed
+People and society;1752;South America;Success
+Pets and animals;1866;South America;Success
+Reference;2130;South America;Success
+Health;2322;South America;Success
+Trip;3114;South America;Success
+Arts and entertainment;2172;Europe, Middle East and Africa;Success
+Automobiles and vehicles;3336;Europe, Middle East and Africa;Success
+House and garden;6468;Europe, Middle East and Africa;Success
+Science;2286;Europe, Middle East and Africa;Success
+Food and drinks;2988;Europe, Middle East and Africa;Success
+Shopping;4626;Europe, Middle East and Africa;Success
+Computers and electronic devices;4584;Europe, Middle East and Africa;Success
+Online communities;3510;Europe, Middle East and Africa;Success
+Commerce and industries;4950;Europe, Middle East and Africa;Success
+Fitness and beauty;4152;Europe, Middle East and Africa;Success
+Jobs and education;2928;Europe, Middle East and Africa;Success
+Sports;1566;Europe, Middle East and Africa;Success
+Finance;11682;Europe, Middle East and Africa;Success
+Hobbies and leisure;3222;Europe, Middle East and Africa;Success
+Properties;3114;Europe, Middle East and Africa;Success
+Internet and telecommunications;5274;Europe, Middle East and Africa;Success
+Games;2412;Europe, Middle East and Africa;Success
+Law and government;3228;Europe, Middle East and Africa;Success
+Books and literature;1590;Europe, Middle East and Africa;Success
+News;1200;Europe, Middle East and Africa;Success
+People and society;1956;Europe, Middle East and Africa;Success
+Pets and animals;2982;Europe, Middle East and Africa;Success
+Reference;3012;Europe, Middle East and Africa;Success
+Health;3204;Europe, Middle East and Africa;Success
+Trip;4878;Europe, Middle East and Africa;Success
+Arts and entertainment;3480;Asia and Pacific countries;Success
+Automobiles and vehicles;6378;Asia and Pacific countries;Success
+House and garden;11028;Asia and Pacific countries;Success
+Science;4002;Asia and Pacific countries;Success
+Food and drinks;7044;Asia and Pacific countries;Success
+Shopping;8124;Asia and Pacific countries;Success
+Computers and electronic devices;6336;Asia and Pacific countries;Success
+Online communities;4734;Asia and Pacific countries;Success
+Commerce and industries;8718;Asia and Pacific countries;Success
+Fitness and beauty;9390;Asia and Pacific countries;Success
+Jobs and education;4272;Asia and Pacific countries;Success
+Sports;4260;Asia and Pacific countries;Success
+Finance;15012;Asia and Pacific countries;Success
+Hobbies and leisure;6324;Asia and Pacific countries;Success
+Properties;10002;Asia and Pacific countries;Success
+Internet and telecommunications;6738;Asia and Pacific countries;Success
+Games;3480;Asia and Pacific countries;Success
+Law and government;6192;Asia and Pacific countries;Success
+Books and literature;1296;Asia and Pacific countries;Success
+News;2010;Asia and Pacific countries;Success
+People and society;4122;Asia and Pacific countries;Success
+Pets and animals;6690;Asia and Pacific countries;Success
+Reference;6840;Asia and Pacific countries;Success
+Health;9462;Asia and Pacific countries;Success
+Trip;5820;Asia and Pacific countries;Success

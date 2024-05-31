@@ -1,139 +1,117 @@
-
+import csv
+import re
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-from time import sleep
-import csv
-import numpy as np
-
-import pyscreenshot as ImageGrab
-
 import cv2
 import pytesseract
+import pyscreenshot as ImageGrab
 import preprocessing
 
-import easygui
+class DataCollector:
+    # Path to Tesseract executable
+    TESSERACT_CMD = r'C:\Users\james\AppData\Local\Tesseract-OCR\tesseract.exe'
+    # Path to save screenshots
+    IMG_PATH = "img/screenshot.jpg"
+    # Custom configuration for Tesseract OCR
+    CUSTOM_CONFIG = r'--oem 3 --psm 6'
+    # List of category names for reference
+    CATEGORIES = [
+        'Arts and entertainment', 'Automobiles and vehicles', 'House and garden', 'Science',
+        'Food and drinks', 'Shopping', 'Computers and electronic devices', 'Online communities',
+        'Commerce and industries', 'Fitness and beauty', 'Jobs and education', 'Sports',
+        'Finance', 'Hobbies and leisure', 'Properties', 'Internet and telecommunications',
+        'Games', 'Law and government', 'Books and literature', 'News', 'People and society',
+        'Pets and animals', 'Reference', 'Health', 'Trip'
+    ]
 
-import re
-
-
-class DataCollector():
-  
     def __init__(self):
-        print('init')
-  
-    def get_data(loc, cat):
-                
-        with webdriver.Firefox() as driver:
-            
-            driver.get("https://adsense.google.com/start/#calculator")
-            
-            driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/div/div[1]/div/button").click()
-            
-            # Selection int variable
-            option = loc
-            
-            # 1 - North America
-            # 2 - South America
-            # 3 - Europe, Middle East and Africa
-            # 4 - Asia and Pacific countries
-            
-            driver.find_element(By.XPATH, f"/html/body/main/section[6]/div/div[2]/div/div[1]/div/div/ul/li[{option}]/button").click()
-                            
-            categories = []
-            values = []
-            ad_loc = []
-            
-            for second_option in range(1, cat):
+        # Initialize the DataCollector class and set up Tesseract
+        print('Initializing DataCollector...')
+        pytesseract.pytesseract.tesseract_cmd = self.TESSERACT_CMD
 
-                # Select the second ComboBox
-                driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/div/div[2]/div/button").click()
+    def read_image(self, gscale):
+        # Converts an image to grayscale using different color spaces and performs OCR
+        grayscale_modes = [cv2.COLOR_BGR2Luv, cv2.COLOR_BGR2Lab, cv2.COLOR_BGR2XYZ]
+        grayscale = grayscale_modes[gscale]
+        print(f'Testing {["Luv", "Lab", "XYZ"][gscale]} scale')
 
-                # Select option in ComboBox
-                category = driver.find_element(By.XPATH, f"/html/body/main/section[6]/div/div[2]/div/div[2]/div/div/ul/li[{second_option}]/button")
-                
-                # Category name extraction
-                category_name = category.text
-                categories.append(category_name)
-                
-                category.click()
-
-                # Calculate
-                driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/button").click()
-
-                # Y 1500 = Calculator section
-                # Y 2000 = Result view
-                driver.execute_script("window.scrollTo(0, 2000)")
-
-                result_row = driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[3]/div[3]/div[1]")
-                location = result_row.location
-                xl, yl = location['x'], location['y']
-
-                size = result_row.size
-                w, h = size['width'], size['height']
-
-                x1 = int(xl+60)
-                x2 = int((xl+w)-60)
-                y1 = int(yl-1900)
-                y2 = int((yl-h)-1700)
-
-                print("Second collection")
-                print(f"X1: {x1}, Y1: {y1}\nX2: {x2}, Y2: {y2}")
-                image = ImageGrab.grab(bbox=(x1,y1,x2,y2))
-                image.save('img/screenshot.jpg', 'jpeg')
-
-                # Little pause for visualization
-                sleep(1)
-                if(second_option < cat):
-                    # Scroll back
-                    driver.execute_script("window.scrollTo(0, 1500)")
-                    sleep(1)
-
-                    driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[3]/button").click()
-                
-                image = cv2.imread("img/screenshot.jpg")
-                custom_config = r'--oem 3 --psm 6'
-                gray = cv2.cvtColor(image, cv2.COLOR_BGR2Luv)
-                noise = preprocessing.remove_noise(gray)
-                canny = preprocessing.canny(noise)
-                thresh = preprocessing.thresholding(canny)
-                convertion = thresh
-                
-                # COLOR_BGR2Luv > Alta porcentagem (20/25)
-
-                pytesseract.pytesseract.tesseract_cmd = r'C:\Users\james\AppData\Local\Tesseract-OCR\tesseract.exe'
-                text = pytesseract.image_to_string(convertion, config=custom_config)
-                print(text)
-                text = re.sub(r'\D','', text)
-                
-                value = int(text)
-                values.append(value)
-                
-                ad_locate = ''
-                match loc:
-                    case 1:
-                        ad_locate = 'North America'
-                    case 2:
-                        ad_locate = 'South America'
-                    case 3:
-                        ad_locate = 'Europe, Middle East and Africa'
-                    case 4:
-                        ad_locate = 'Asia and Pacific countries'
-                ad_loc.append(ad_locate)
-                
-                
-        data = []
-        for i in range(len(categories)):
-            data.append([categories[i], values[i], ad_loc[i]])
-        print(data)
-
-        with open("data/info.csv", "wt") as archive:
-            writer = csv.writer(archive, delimiter=";")
-            writer.writerow(["Category", "Value", "Location"])
-            
-            for row in data:
-                writer.writerow(row)
+        # Read the image from the saved path
+        image = cv2.imread(self.IMG_PATH)
+        gray = cv2.cvtColor(image, grayscale)
+        noise = preprocessing.remove_noise(gray)
+        canny = preprocessing.canny(noise)
+        thresh = preprocessing.thresholding(canny)
         
-    if __name__ == '__main__':
-        cat = int(easygui.enterbox('How many categories do you want to analyze?'))
-        get_data(2, cat+1)
+        # Extract text from the processed image using Tesseract OCR
+        text = pytesseract.image_to_string(thresh, config=self.CUSTOM_CONFIG)
+        text = re.sub(r'\D', '', text)
+        value = int(text) if text else 0
+
+        # Retry with different grayscale modes if value is less than 1000
+        if value < 1000 and gscale < 2:
+            return self.read_image(gscale + 1)
+        
+        return [value, 'Success' if gscale == 0 else 'Reviewed']
+
+    def image_scraping(self, result_row):
+        # Capture a screenshot of the specific area where the result is displayed
+        location = result_row.location
+        size = result_row.size
+        x1 = int(location['x'] + 60)
+        x2 = int((location['x'] + size['width']) - 60)
+        y1 = int(location['y'] - 1900)
+        y2 = int((location['y'] - size['height']) - 1700)
+        image = ImageGrab.grab(bbox=(x1, y1, x2, y2))
+        image.save(self.IMG_PATH, 'jpeg')
+
+def get_data(loc, cat):
+    # Main function to collect data by interacting with the web page
+    data_collector = DataCollector()
+    with webdriver.Firefox() as driver:
+        driver.get("https://adsense.google.com/start/#calculator")
+        data = []
+
+        for reg in loc:
+            # Select the region
+            driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/div/div[1]/div/button").click()
+            driver.find_element(By.XPATH, f"/html/body/main/section[6]/div/div[2]/div/div[1]/div/div/ul/li[{reg}]/button").click()
+
+            for second_option in cat:
+                # Initialize list to store categories
+                categories = []
+
+                # Select the category
+                driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/div/div[2]/div/button").click()
+                category = driver.find_element(By.XPATH, f"/html/body/main/section[6]/div/div[2]/div/div[2]/div/div/ul/li[{second_option}]/button")
+                categories.append(DataCollector.CATEGORIES[second_option - 1])
+                category.click()
+                
+                # Calculate and display results
+                driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[2]/button").click()
+                driver.execute_script("window.scrollTo(0, 2000)")
+                time.sleep(1)  # Short pause for visualization
+
+                # Scrape the result from the displayed area
+                result_row = driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[3]/div[3]/div[1]")
+                data_collector.image_scraping(result_row)
+                driver.execute_script("window.scrollTo(0, 1500)")
+                time.sleep(1)
+                driver.find_element(By.XPATH, "/html/body/main/section[6]/div/div[3]/button").click()
+
+                # Read the value from the image
+                from_image = data_collector.read_image(0)
+                text = from_image[0]
+                attempts = from_image[1]
+                value = int(text)
+
+                # Map region index to region name
+                region = ['North America', 'South America', 'Europe, Middle East and Africa', 'Asia and Pacific countries'][reg - 1]
+                data.append([categories[-1], value, region, attempts])
+
+    # Save collected data to a CSV file
+    with open("data/info.csv", "wt", newline='', encoding='UTF-8') as archive:
+        writer = csv.writer(archive, delimiter=";")
+        writer.writerow(["Category", "Value", "Region", "Status"])
+        writer.writerows(data)
