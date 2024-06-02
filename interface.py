@@ -55,13 +55,16 @@ def confirm_options():
     # Function to confirm the selected options and pass them to the main data collection function
     reg_selection = verify_reg_selection()
     cat_selection = verify_cat_selection()
-    main.get_data(reg_selection, cat_selection)
+    if reg_selection and cat_selection:
+        main.get_data(reg_selection, cat_selection)
+    else:
+        print('There are unselected options')
 
 def create_gui():
     # Function to create the main GUI window and populate it with widgets
     window = ctk.CTk()
     window._set_appearance_mode("system")
-    window.title('Google Ads - Data Collector')
+    window.title('Google AdSense - Data Collector')
     window.geometry("800x450")
     window.resizable(width=False, height=False)
     window.wm_iconbitmap("img/icon.ico")
