@@ -9,24 +9,37 @@
 </div>
 <h2 id="about">About</h2>
 <p>
-  About the project
+  This is a python automation with a graphical interface that collects data from the Google Adsense website, sends it to a .csv file and transforms it into graphs that are automatically saved in the img/relatory folder.
 </p>
 <br/>
 
-<h2 id="summary">Summary</h2>
-
-   * [About](#about)
-   * [Summary](#summary)
-   * [Installation](#installation)
-   * [How to use](#howtouse)
-      * [Pre-requisites](#prerequisites)
-      * [Tesseract installation](#tesseract_instalation)
-      * [Interface tutorial](#interface_tutorial)
-      * [Data interpretation](#data_interpretation)
-      * [Extra](#extra)
+<details open>
+  <summary id="summary">Summary</summary>
+    
+  * [About](#about)
+  * [Summary](#summary)
+    <details open>
+    <summary target="#howtouse">How to use</summary>   
+           
+    * [Pre-requisites](#prerequisites)
+    * [Tesseract installation](#tesseract_instalation)
+    * [Interface tutorial](#interface_tutorial)
+    * [Data interpretation](#data_interpretation)
+      <details open>
+      <summary target="#extra">Extra</summary>
+        
         * [Excel integration](#excel_integration)
-   * [Tests](#tests)
-   * [Technologies](#technologies)
+      </details>
+    </details>   
+    <details open>
+    <summary target="#howitworks">How it works?</summary>
+          
+    * [Interface interaction](#interface_interaction)
+  </details>
+  
+  * [Tests](#tests)
+  * [Technologies](#technologies)
+</details>
 
 <br/>
 <h2 id="howtouse">How to use</h2>
@@ -36,6 +49,9 @@
   <h3 id="data_interpretation">Data interpretation</h3><br/>
   <h3 id="extra">Extra</h3>
   <h4 id="excel_integration">Excel integration</h4><br/>
+
+<br/>
+<h2 id="howitworks">How it works?</h2>
 
 <br/>
 <h2 id="tests">Tests</h2>
