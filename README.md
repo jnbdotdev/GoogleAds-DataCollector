@@ -7,14 +7,15 @@
   <img src="https://img.shields.io/static/v1?label=Version&labelColor=D18CE0&message=1.1.0&color=F6F5F2&style=for-the-badge&logo=vonage"/>
   <img src="https://img.shields.io/static/v1?label=License&labelColor=D18CE0&message=MIT&color=F6F5F2&style=for-the-badge&logo=perforce"/>
 </div>
-<h2 id="about">About</h2>
+<h2 id="about">1. About</h2>
 <p>
   This software is designed to collect data from Google's AdSense calculator using Selenium for web automation. It uses customtkinter for the graphical user interface (GUI), OpenCV and Tesseract for image processing and optical character recognition (OCR), and Matplotlib and pandas for data analysis and visualization.
 </p>
-<br/>
+<br>
 
+<h2 id="summary">2. Summary</h2>
 <details open>
-  <summary id="summary">Summary</summary><br/>
+  <summary>Summary</summary><br>
   The application automates the process of selecting categories and regions from the Google AdSense calculator, captures the displayed results using screenshots, extracts text from the images using OCR, and stores the data in a CSV file. It then generates visual charts for further analysis of the collected data.<br/>
   
   * [About](#about)
