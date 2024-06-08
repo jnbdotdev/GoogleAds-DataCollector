@@ -10,7 +10,7 @@
 <br>
 <h2 id="about">1. Sobre</h2>
 <p>
-  Este software foi projetado para coletar dados do calculador do Google AdSense usando o Selenium para automação web. Ele usa o customtkinter para a interface gráfica do usuário (GUI), OpenCV e Tesseract para processamento de imagem e reconhecimento óptico de caracteres (OCR), e Matplotlib e pandas para análise e visualização de dados.
+  Este software foi projetado para coletar dados da calculadora do Google AdSense usando o Selenium para automação web. Ele usa o customtkinter para a interface gráfica do usuário (GUI), OpenCV e Tesseract para processamento de imagem e reconhecimento óptico de caracteres (OCR), e Matplotlib e pandas para análise e visualização de dados.
 </p>
 <br/>
 
