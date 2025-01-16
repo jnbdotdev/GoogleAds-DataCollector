@@ -14,7 +14,7 @@
 </p>
 <br>
 
-<h2 id="summary">2. Summary</h2>
+<h2 id="summary">2. Summary</h2> 
 <details open>
   <summary>Summary</summary><br>
   The application automates the process of selecting categories and regions from the Google AdSense calculator, captures the displayed results using screenshots, extracts text from the images using OCR, and stores the data in a CSV file. It then generates visual charts for further analysis of the collected data.<br/>
